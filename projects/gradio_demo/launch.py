@@ -35,7 +35,7 @@ class ObjectDetectionTab:
     model_list = [
         'retinanet_r50-caffe_fpn_1x_coco',
         'faster-rcnn_r50-caffe_fpn_1x_coco',
-        'dino-5scale_swin-l_8xb2-12e_coco.py',
+        'dino-5scale_swin-l_8xb2-12e_coco',
     ]
 
     def __init__(self) -> None:
@@ -54,15 +54,15 @@ class ObjectDetectionTab:
             with gr.Column():
                 image_input = gr.Image(
                     label='Image',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     type='filepath',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
@@ -80,7 +80,7 @@ class ObjectDetectionTab:
             example_images = gr.Dataset(
                 components=[image_input], samples=[['demo/demo.jpg']])
             example_images.click(
-                fn=lambda x: gr.Image.update(value=x[0]),
+                fn=lambda x: x[0],
                 inputs=example_images,
                 outputs=image_input)
 
@@ -122,11 +122,11 @@ class OpenVocabObjectDetectionTab:
             with gr.Column():
                 image_input = gr.Image(
                     label='Image',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     type='filepath',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 text_input = gr.Textbox(
                     label='text prompt',
@@ -135,7 +135,7 @@ class OpenVocabObjectDetectionTab:
                 )
                 output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
@@ -192,11 +192,11 @@ class GroundingDetectionTab(OpenVocabObjectDetectionTab):
             with gr.Column():
                 image_input = gr.Image(
                     label='Image',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     type='filepath',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 text_input = gr.Textbox(
                     label='text prompt',
@@ -205,7 +205,7 @@ class GroundingDetectionTab(OpenVocabObjectDetectionTab):
                 )
                 output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
@@ -288,11 +288,11 @@ class OpenVocabPanopticSegTab(OpenVocabObjectDetectionTab):
             with gr.Column():
                 image_input = gr.Image(
                     label='Image',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     type='filepath',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 text_input = gr.Textbox(
                     label='thing text prompt',
@@ -306,7 +306,7 @@ class OpenVocabPanopticSegTab(OpenVocabObjectDetectionTab):
                 )
                 output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
@@ -402,10 +402,10 @@ class ImageCaptionTab:
             with gr.Column():
                 image_input = gr.Image(
                     label='Input',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 caption_output = gr.Textbox(
                     label='Result',
@@ -427,7 +427,7 @@ class ImageCaptionTab:
             example_images = gr.Dataset(
                 components=[image_input], samples=[['demo/demo.jpg']])
             example_images.click(
-                fn=lambda x: gr.Image.update(value=x[0]),
+                fn=lambda x: x[0],
                 inputs=example_images,
                 outputs=image_input)
 
@@ -464,11 +464,11 @@ class ReferImageCaptionTab(OpenVocabInstanceSegTab):
             with gr.Column():
                 image_input = gr.Image(
                     label='Input',
-                    source='upload',
+                    sources=['upload'],
                     elem_classes='input_image',
                     type='filepath',
                     interactive=True,
-                    tool='editor',
+                    # tool='editor',
                 )
                 text_input = gr.Textbox(
                     label='text prompt',
@@ -477,7 +477,7 @@ class ReferImageCaptionTab(OpenVocabInstanceSegTab):
                 )
                 output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
@@ -548,7 +548,7 @@ class TextToImageRetrievalTab:
                 )
                 retri_output = gr.Image(
                     label='Result',
-                    source='upload',
+                    sources=['upload'],
                     interactive=False,
                     elem_classes='result',
                 )
